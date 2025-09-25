@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Vaishmavi.T</title>
+  <meta name="description" content="A clean, responsive portfolio template (HTML/CSS/JS)." />
+
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --maxw:1100px; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,#071024 0%, var(--bg) 100%); color:#e6eef8; -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale; line-height:1.5; padding:32px 20px;
+    }
+    .container{max-width:var(--maxw); margin:0 auto}
+
+    /* NAV */
+    header{display:flex;align-items:center;justify-content:space-between; gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted); text-decoration:none; font-weight:600}
+    nav a:hover{color:#fff}
+    .cta{background:linear-gradient(90deg,var(--accent),#06b6d4); padding:10px 14px;border-radius:10px;color:white;text-decoration:none;font-weight:700}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;padding:36px 0}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:var(--radius); padding:28px; box-shadow: 0 6px 20px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03)}
+    h1{font-size:clamp(26px,4vw,44px); margin:0 0 8px}
+    p.lead{color:var(--muted); margin:0 0 18px}
+    .actions{display:flex;gap:12px;align-items:center}
+
+    /* Skills & projects grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+    .skill{background:var(--card);padding:12px;border-radius:12px;text-align:center}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px}
+    .project{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:16px;border-radius:12px;cursor:pointer}
+    .project h3{margin:0 0 8px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:var(--glass);color:var(--muted)}
+
+    /* About & contact */
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:24px}
+    .contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:10px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent); color:white;text-decoration:none;font-weight:700}
+
+    footer{margin-top:36px;color:var(--muted);font-size:14px}
+
+    /* Mobile */
+    @media (max-width:880px){
+      .hero,.two-col{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+      .mobile-nav{display:flex}
+      .container{padding:0 10px}
+    }
+
+    /* small */
+    @media (max-width:520px){.grid{grid-template-columns:1fr}.projects{grid-template-columns:1fr}}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);padding:24px}
+    .modal.show{display:flex}
+    .modal .inner{max-width:900px;width:100%;background:linear-gradient(180deg, rgba(255,255,255,0.02),transparent);padding:20px;border-radius:16px}
+
+    /* small niceties */
+    .muted{color:var(--muted)}
+    .skill-list{display:flex;gap:8px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">V</div>
+        <div>
+          <div style="font-weight:700">Vaishnavi.T</div>
+          <div class="muted" style="font-size:13px">Frontend Developer</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="#contact">Hire me</a>
+      </nav>
+
+      <div class="mobile-nav" style="display:none">
+        <button id="menuBtn" aria-label="open menu">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="card">
+            <h1>Hi — I'm <span style="color:var(--accent)">Vaishnavi.T</span></h1>
+            <p class="lead">I build accessible, performant front-end experiences. I love turning ideas into pixel-perfect apps and clean code.</p>
+            <div class="actions">
+              <a class="btn" href="#projects">View Projects</a>
+              <a style="align-self:center;color:var(--muted)" href="#contact">Download CV →</a>
+            </div>
+
+            <div class="grid" style="margin-top:20px">
+              <div class="skill">
+                <strong>HTML</strong>
+                <div class="muted" style="font-size:13px">Semantic markup</div>
+              </div>
+              <div class="skill">
+                <strong>CSS</strong>
+                <div class="muted" style="font-size:13px">Responsive & modern</div>
+              </div>
+              <div class="skill">
+                <strong>JavaScript</strong>
+                <div class="muted" style="font-size:13px">Vanilla & frameworks</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+             <img src="pic.jpg" alt="profile" style="width:100%;border-radius:10px;display:block;margin-bottom:12px">
+
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Based in: India</div>
+                <div class="muted" style="font-size:13px">Available for freelance</div>
+              </div>
+              <a class="btn" href="#contact">Contact</a>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="two-col">
+        <div class="card">
+          <h2>About me</h2>
+          <p class="muted">I'm a front-end developer with a focus on accessibility and performance. I enjoy building beautiful UI and shipping production-ready features. Below are a few technologies I work with and a selection of projects.</p>
+
+          <h3 style="margin-top:16px">Skills</h3>
+          <div class="skill-list" style="margin-top:10px">
+            <div class="tag">HTML</div>
+            <div class="tag">CSS</div>
+            <div class="tag">JavaScript</div>
+            <div class="tag">React</div>
+            <div class="tag">Node.js</div>
+            <div class="tag">Figma</div>
+          </div>
+
+        </div>
+
+        <div class="card contact-card">
+          <h3>Quick contact</h3>
+          <p class="muted">Email: <a href="mailto:your@email.com">vaishnavithangavelm@email.com</a></p>
+          <p class="muted">Phone: +91 6385612386</p>
+          <div style="margin-top:12px">
+            <a class="btn" href="#contact">Send message</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2 style="margin-top:28px">Selected Projects</h2>
+        <div class="projects">
+          <div class="project card" data-title="Weather App" data-desc="A weather app using OpenWeather API with responsive UI." data-links='{"live":"#","code":"#"}'>
+            <h3>Weather App</h3>
+            <p class="muted">Small app that shows current weather and forecast.</p>
+            <div class="tags" style="margin-top:10px">
+              <span class="tag">JavaScript</span>
+              <span class="tag">API</span>
+            </div>
+          </div>
+
+          <div class="project card" data-title="Portfolio Site" data-desc="This portfolio built with HTML/CSS/JS. Responsive and accessible." data-links='{"live":"#","code":"#"}'>
+            <h3>Portfolio Site</h3>
+            <p class="muted">The website you're viewing — clean and minimal.</p>
+            <div class="tags" style="margin-top:10px">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+          </div>
+
+          <div class="project card" data-title="Task Manager" data-desc="A simple task manager with localStorage persistence." data-links='{"live":"#","code":"#"}'>
+            <h3>Task Manager</h3>
+            <p class="muted">Manage tasks with add/edit/delete and save to browser.</p>
+            <div class="tags" style="margin-top:10px">
+              <span class="tag">Vanilla JS</span>
+              <span class="tag">LocalStorage</span>
+            </div>
+          </div>
+
+          <div class="project card" data-title="E-commerce UI" data-desc="Product listing and cart UI prototype." data-links='{"live":"#","code":"#"}'>
+            <h3>E-commerce UI</h3>
+            <p class="muted">A responsive product grid and minimal cart interactions.</p>
+            <div class="tags" style="margin-top:10px">
+              <span class="tag">CSS Grid</span>
+              <span class="tag">UX</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:24px">
+        <h2>Contact</h2>
+        <div class="card contact-form">
+          <form id="contactForm" onsubmit="return false;">
+            <input id="name" placeholder="Your name" required />
+            <input id="email" placeholder="Your email" type="email" required />
+            <textarea id="message" placeholder="Message" rows="5" required></textarea>
+            <button id="sendBtn" class="btn">Send message</button>
+            <div id="formMsg" class="muted" style="margin-top:8px"></div>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        <div class="muted">© <span id="y">2025</span>vaishu— Built with ❤️ using HTML/CSS/JS</div>
+      </footer>
+    </main>
+
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true">
+    <div class="inner">
+      <button id="closeModal" style="float:right;background:transparent;border:none;color:var(--muted);font-size:18px;">✕</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc" class="muted"></p>
+      <div id="modalLinks" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <script>
+    // small helper: open project modal
+    document.querySelectorAll('.project').forEach(p=>{
+      p.addEventListener('click',()=>{
+        const title = p.dataset.title;
+        const desc = p.dataset.desc;
+        const links = JSON.parse(p.dataset.links || '{}');
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalDesc').textContent = desc;
+        const linksEl = document.getElementById('modalLinks'); linksEl.innerHTML='';
+        if(links.live) linksEl.innerHTML += `<a class='tag' href='${links.live}' target='_blank' style='margin-right:8px'>Live demo</a>`;
+        if(links.code) linksEl.innerHTML += `<a class='tag' href='${links.code}' target='_blank'>Source</a>`;
+        document.getElementById('modal').classList.add('show');
+      })
+    })
+    document.getElementById('closeModal').addEventListener('click',()=>document.getElementById('modal').classList.remove('show'))
+    document.getElementById('modal').addEventListener('click',(e)=>{ if(e.target===document.getElementById('modal')) document.getElementById('modal').classList.remove('show') })
+
+    // contact form mock
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const msg = document.getElementById('formMsg');
+      if(!name||!email||!message){ msg.textContent='Please fill all fields.'; return }
+      msg.textContent = 'Thanks, message queued (demo). I will contact you soon.';
+      document.getElementById('contactForm').reset();
+    })
+
+    // small nav smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      })
+    })
+
+    // set year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
